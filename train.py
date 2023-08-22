@@ -1,14 +1,16 @@
-from models import *
-from data import *
 import torch
 import albumentations as A
+
+from models import *
+from data import *
+
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 from albumentations.pytorch import ToTensorV2
 
 def train():
 	device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-	
+
 	model = UNet().to(device)
 
 	criterion = torch.nn.CrossEntropyLoss()
