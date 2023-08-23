@@ -1,19 +1,28 @@
 import torch
 import numpy as np
+import albumentations as A
 
 from models import *
 from data import *
 from utils import *
 
 from tqdm import tqdm
-from torch.utils.data import Dataset, DataLoader
+from torch.utils.data import DataLoader
 from PIL import Image
+from albumentations.pytorch import ToTensorV2
 
 def test():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = UNet().to(device)
-    transform = img_transform()
-    test_dataset = CustomDataset(csv_file='./test.csv', transform=transform, infer=True)
+    transform = A.Compose(
+		[   
+			A.Resize(224, 224),
+			A.Normalize(),
+			ToTensorV2()
+		]
+	)
+
+    test_dataset = CustomDataset(csv_file='~/Downloads/data/test.csv', transform=transform, infer=True)
     test_dataloader = DataLoader(test_dataset, batch_size=16, shuffle=False, num_workers=4)
 
     with torch.no_grad():
