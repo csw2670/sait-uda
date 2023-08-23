@@ -12,7 +12,7 @@ from PIL import Image
 def test():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = UNet().to(device)
-    transform = transform()
+    transform = img_transform()
     test_dataset = CustomDataset(csv_file='./test.csv', transform=transform, infer=True)
     test_dataloader = DataLoader(test_dataset, batch_size=16, shuffle=False, num_workers=4)
 

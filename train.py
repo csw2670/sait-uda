@@ -23,7 +23,7 @@ def train():
 		]
 	)
 
-	dataset = CustomDataset(csv_file='./train_source.csv', transform=transform)
+	dataset = CustomDataset(csv_file='~/Downloads/data/train_source.csv', transform=transform)
 	dataloader = DataLoader(dataset, batch_size=16, shuffle=True, num_workers=4)
 
 	for epoch in range(20):

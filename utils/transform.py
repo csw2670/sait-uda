@@ -2,7 +2,7 @@ import albumentations as A
 from albumentations.pytorch import ToTensorV2
 
 
-def transform():
+def img_transform():
     transform = A.Compose(
         [   
             A.Resize(224, 224),
