@@ -7,14 +7,13 @@ class CustomDataset(Dataset):
         self.data = pd.read_csv(csv_file)
         self.transform = transform
         self.infer = infer
-        self.absolute_path = "/Users/csw/Downloads/data"
+        self.absolute_path = "/shared/s2/lab01/dataset/sait_uda/data"
 
     def __len__(self):
         return len(self.data)
 
     def __getitem__(self, idx):
         img_path = self.absolute_path + self.data.iloc[idx, 1][1:]
-        print(img_path)
         image = cv2.imread(img_path)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         
