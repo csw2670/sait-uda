@@ -1,0 +1,5 @@
+#data
+datadir = /shared/s2/lab01/dataset/sait_uda/data
+
+#train
+epoch : 20
